@@ -1,28 +1,39 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interacción con Nodos</title>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.js"></script>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <title>Árbol Binario (MVC)</title>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-    
-    <div class="container">
-        <h1>Gestión de Nodos Interactivos</h1>
-        <p>PARCIAL_1</p>
-        <div id="mynetwork"></div>
-        <div class="controls">
-            <button id="addNode" class="btn">➕ Añadir Nodo</button>
-            <button id="removeNode" class="btn">❌ Eliminar Nodo</button>
-            <button id="addEdge" class="btn">🔗 Añadir Arista</button>
-            <button id="removeEdge" class="btn">✂️ Eliminar Arista</button>
-            <button id="prerequisites" class="btn">📌 Ver Prerrequisitos</button>
-            <button id="postrequisites" class="btn">📍 Ver Postrequisitos</button>
-        </div>
-        <p>Estructuras de datos no lineales - Diego Casallas</p>
+  <h1>Árbol Binario con MVC y POO</h1>
+  <div id="app-container">
+    <!-- Sección de controles -->
+    <div id="controls">
+      <input type="text" id="inputValue" placeholder="Ingresa un valor" />
+      <button id="btnInsertar">Insertar</button>
+      <button id="btnBuscar">Buscar</button>
+      <button id="btnBorrar">Borrar</button>
+      <button id="btnInOrder">In-Order</button>
+      <button id="btnPreOrder">Pre-Order</button>
+      <button id="btnPostOrder">Post-Order</button>
+      <button id="btnBFS">BFS (Amplitud)</button>
     </div>
-    <script src="script.js"></script>
+
+    <!-- Sección de visualización -->
+    <div id="canvasContainer">
+      <canvas id="treeCanvas" width="800" height="600"></canvas>
+    </div>
+
+    <!-- Sección de resultados -->
+    <div id="output">
+      <p id="resultText"></p>
+    </div>
+  </div>
+
+  <!-- Archivos JavaScript (MVC) -->
+  <script src="model.js"></script>
+  <script src="view.js"></script>
+  <script src="controller.js"></script>
 </body>
 </html>
