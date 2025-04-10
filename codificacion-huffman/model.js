@@ -1,51 +1,50 @@
-class HuffmanNode {
-  constructor(char, freq, left = null, right = null) {
-    this.char = char;
-    this.freq = freq;
-    this.left = left;
-    this.right = right;
+// model.js
+class NodoHuffman {
+  constructor(caracter, frecuencia) {
+    this.caracter = caracter;
+    this.frecuencia = frecuencia;
+    this.izquierdo = null;
+    this.derecho = null;
   }
 }
 
-class HuffmanModel {
-  constructor() {
-    this.codes = {};
-  }
-
-  buildFrequencyMap(text) {
-    const freqMap = new Map();
-    for (let char of text) {
-      freqMap.set(char, (freqMap.get(char) || 0) + 1);
+class ModeloHuffman {
+  construirArbol(texto) {
+    const mapaFrecuencias = new Map();
+    for (const caracter of texto) {
+      mapaFrecuencias.set(caracter, (mapaFrecuencias.get(caracter) || 0) + 1);
     }
-    return freqMap;
-  }
 
-  buildTree(freqMap) {
-    const nodes = Array.from(freqMap.entries()).map(
-      ([char, freq]) => new HuffmanNode(char, freq)
+    const cola = Array.from(mapaFrecuencias.entries()).map(
+      ([caracter, frecuencia]) => new NodoHuffman(caracter, frecuencia)
     );
 
-    while (nodes.length > 1) {
-      nodes.sort((a, b) => a.freq - b.freq);
-      const left = nodes.shift();
-      const right = nodes.shift();
-      const parent = new HuffmanNode(null, left.freq + right.freq, left, right);
-      nodes.push(parent);
+    cola.sort((a, b) => a.frecuencia - b.frecuencia);
+
+    while (cola.length > 1) {
+      const izquierdo = cola.shift();
+      const derecho = cola.shift();
+      const nuevoNodo = new NodoHuffman(null, izquierdo.frecuencia + derecho.frecuencia);
+      nuevoNodo.izquierdo = izquierdo;
+      nuevoNodo.derecho = derecho;
+      cola.push(nuevoNodo);
+      cola.sort((a, b) => a.frecuencia - b.frecuencia);
     }
 
-    return nodes[0];
+    return cola[0];
   }
 
-  generateCodes(node, code = '') {
-    if (!node) return;
-    if (!node.left && !node.right) {
-      this.codes[node.char] = code;
-    }
-    this.generateCodes(node.left, code + '0');
-    this.generateCodes(node.right, code + '1');
-  }
-
-  getEncodingTable() {
-    return this.codes;
+  generarCodigos(nodo) {
+    const codigos = {};
+    const recorrer = (nodo, camino) => {
+      if (!nodo) return;
+      if (nodo.caracter !== null) {
+        codigos[nodo.caracter] = camino;
+      }
+      recorrer(nodo.izquierdo, camino + '0');
+      recorrer(nodo.derecho, camino + '1');
+    };
+    recorrer(nodo, '');
+    return codigos;
   }
 }

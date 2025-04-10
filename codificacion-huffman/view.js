@@ -1,91 +1,79 @@
-// view.js
-class HuffmanView {
+// vista.js
+class VistaHuffman {
   constructor() {
-    this.tableBody = document.querySelector('#encodingTable tbody');
-    this.canvas = document.getElementById('treeCanvas');
-    this.ctx = this.canvas.getContext('2d');
+    this.cuerpoTabla = document.querySelector('#tablaCodificacion tbody');
+    this.lienzo = document.getElementById('lienzoArbol');
+    this.ctx = this.lienzo.getContext('2d');
   }
 
-  clearTable() {
-    this.tableBody.innerHTML = '';
+  limpiarTabla() {
+    this.cuerpoTabla.innerHTML = '';
   }
 
-  renderTable(freqMap, codes) {
-    this.clearTable();
-    for (const [char, freq] of freqMap.entries()) {
-      const row = document.createElement('tr');
+  mostrarTabla(mapaFrecuencias, codigos) {
+    this.limpiarTabla();
+    for (const [caracter, frecuencia] of mapaFrecuencias.entries()) {
+      const fila = document.createElement('tr');
 
-      const charCell = document.createElement('td');
-      charCell.textContent = char;
+      const celdaCaracter = document.createElement('td');
+      celdaCaracter.textContent = caracter;
 
-      const freqCell = document.createElement('td');
-      freqCell.textContent = freq;
+      const celdaFrecuencia = document.createElement('td');
+      celdaFrecuencia.textContent = frecuencia;
 
-      const codeCell = document.createElement('td');
-      codeCell.textContent = codes[char];
+      const celdaCodigo = document.createElement('td');
+      celdaCodigo.textContent = codigos[caracter];
 
-      row.appendChild(charCell);
-      row.appendChild(freqCell);
-      row.appendChild(codeCell);
+      fila.appendChild(celdaCaracter);
+      fila.appendChild(celdaFrecuencia);
+      fila.appendChild(celdaCodigo);
 
-      this.tableBody.appendChild(row);
+      this.cuerpoTabla.appendChild(fila);
     }
   }
 
-  drawTree(node, x = 400, y = 50, spacing = 200) {
-    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+  dibujarArbol(nodo, x = 400, y = 50, espacio = 200) {
+    this.ctx.clearRect(0, 0, this.lienzo.width, this.lienzo.height);
 
-    const drawNode = (node, x, y, spacing) => {
-      if (!node) return;
-      const radius = 20;
+    const dibujarNodo = (nodo, x, y, espacio) => {
+      if (!nodo) return;
+      const radio = 20;
 
-      // Dibujar el nodo
       this.ctx.beginPath();
-      this.ctx.arc(x, y, radius, 0, 2 * Math.PI);
+      this.ctx.arc(x, y, radio, 0, 2 * Math.PI);
       this.ctx.fillStyle = '#ADD8E6';
       this.ctx.fill();
       this.ctx.stroke();
 
-      // Mostrar frecuencia o char + freq en los nodos
-      const label = node.char ? `${node.char} (${node.freq})` : `${node.freq}`;
+      const etiqueta = nodo.caracter ? `${nodo.caracter} (${nodo.frecuencia})` : `${nodo.frecuencia}`;
       this.ctx.fillStyle = '#000';
       this.ctx.textAlign = 'center';
       this.ctx.font = '14px Arial';
-      this.ctx.fillText(label, x, y + 4);
+      this.ctx.fillText(etiqueta, x, y + 4);
 
-      if (node.left) {
-        const childX = x - spacing;
-        const childY = y + 80;
-
-        // Línea a hijo izquierdo
+      if (nodo.izquierdo) {
+        const xHijo = x - espacio;
+        const yHijo = y + 80;
         this.ctx.beginPath();
-        this.ctx.moveTo(x, y + radius);
-        this.ctx.lineTo(childX, childY - radius);
+        this.ctx.moveTo(x, y + radio);
+        this.ctx.lineTo(xHijo, yHijo - radio);
         this.ctx.stroke();
-
-        // Dibujar '0' en la línea
-        this.ctx.fillText('0', (x + childX) / 2 - 10, (y + childY) / 2);
-
-        drawNode(node.left, childX, childY, spacing / 2);
+        this.ctx.fillText('0', (x + xHijo) / 2 - 10, (y + yHijo) / 2);
+        dibujarNodo(nodo.izquierdo, xHijo, yHijo, espacio / 2);
       }
 
-      if (node.right) {
-        const childX = x + spacing;
-        const childY = y + 80;
-
-        // Línea a hijo derecho
+      if (nodo.derecho) {
+        const xHijo = x + espacio;
+        const yHijo = y + 80;
         this.ctx.beginPath();
-        this.ctx.moveTo(x, y + radius);
-        this.ctx.lineTo(childX, childY - radius);
+        this.ctx.moveTo(x, y + radio);
+        this.ctx.lineTo(xHijo, yHijo - radio);
         this.ctx.stroke();
-
-        // Dibujar '1' en la línea
-        this.ctx.fillText('1', (x + childX) / 2 + 10, (y + childY) / 2);
-
-        drawNode(node.right, childX, childY, spacing / 2);
+        this.ctx.fillText('1', (x + xHijo) / 2 + 10, (y + yHijo) / 2);
+        dibujarNodo(nodo.derecho, xHijo, yHijo, espacio / 2);
       }
     };
 
-    drawNode(node, x, y, spacing);
+    dibujarNodo(nodo, x, y, espacio);
   }
 }

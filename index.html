@@ -5,26 +5,27 @@
   <meta charset="UTF-8" />
   <title>Árbol Binario (MVC)</title>
   <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
-  <main>
+  <main class="container">
     <section>
       <h1>Árbol Binario</h1>
       <div id="app-container">
         <!-- Sección de controles -->
-        <div id="controls">
+        <div id="controls"class="controls">
           <input type="text" id="inputValue" placeholder="Ingresa un valor" />
-          <button id="btnInsertar">Insertar</button>
-          <button id="btnBuscar">Buscar</button>
-          <button id="btnBorrar">Borrar</button>
-          <button id="btnInOrder">In-Order</button>
-          <button id="btnPreOrder">Pre-Order</button>
-          <button id="btnPostOrder">Post-Order</button>
-          <button id="btnGrado">Calcular Grado</button>
-          <button id="btnAltura">Calcular Altura</button>
-          <button id="btnNivelNodo">Calcular Nivel Nodo</button>
-          <button id="btnBFS">BFS (Amplitud)</button>
+          <button id="btnInsertar" class="btn">Insertar</button>
+          <button id="btnBuscar"class="btn">Buscar</button>
+          <button id="btnBorrar"class="btn">Borrar</button>
+          <button id="btnInOrder"class="btn">In-Order</button>
+          <button id="btnPreOrder"class="btn">Pre-Order</button>
+          <button id="btnPostOrder"class="btn">Post-Order</button>
+          <button id="btnGrado"class="btn">Calcular Grado</button>
+          <button id="btnAltura"class="btn">Calcular Altura</button>
+          <button id="btnNivelNodo"class="btn">Calcular Nivel Nodo</button>
+          <button id="btnBFS"class="btn">BFS (Amplitud)</button>
         </div>
 
         <!-- Sección de visualización -->
@@ -39,15 +40,39 @@
       </div>
     </section>
     <section>
-      <h2>Arbol huffman</h2>
+      <h2>Compresión con el Algoritmo de Huffman</h2>
+  <form id="formularioTexto">
+    <label for="entradaTexto">Introduce el texto:</label>
+    <input type="text" id="entradaTexto" required />
+    <button type="submit" class="btn">Codificar</button>
+  </form>
+
+  <h3>Tabla de Codificación</h3>
+  <table id="tablaCodificacion">
+    <thead>
+      <tr>
+        <th>Carácter</th>
+        <th>Frecuencia</th>
+        <th>Código</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <h2>Árbol de Huffman</h2>
+  <canvas id="lienzoArbol" width="800" height="600"></canvas>
+
     </section>
   </main>
 
 
   <!-- Archivos JavaScript (MVC) -->
-  <script src="model.js"></script>
-  <script src="view.js"></script>
-  <script src="controller.js"></script>
+  <script src="./arbol-binario/model.js"></script>
+  <script src="./arbol-binario/view.js"></script>
+  <script src="./arbol-binario/controller.js"></script>
+  <script src="./codificacion-huffman/model.js"></script>
+  <script src="./codificacion-huffman/view.js"></script>
+  <script src="./codificacion-huffman/controller.js"></script>
 </body>
 
 </html>
