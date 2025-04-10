@@ -1,43 +1,53 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8" />
   <title>Árbol Binario (MVC)</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
+
 <body>
-  <h1>Árbol Binario</h1>
-  <div id="app-container">
-    <!-- Sección de controles -->
-    <div id="controls">
-      <input type="text" id="inputValue" placeholder="Ingresa un valor" />
-      <button id="btnInsertar">Insertar</button>
-      <button id="btnBuscar">Buscar</button>
-      <button id="btnBorrar">Borrar</button>
-      <button id="btnInOrder">In-Order</button>
-      <button id="btnPreOrder">Pre-Order</button>
-      <button id="btnPostOrder">Post-Order</button>
-      <button id="btnGrado">Calcular Grado</button>
-      <button id="btnAltura">Calcular Altura</button>
-      <button id="btnNivelNodo">Calcular Nivel Nodo</button>
-    
-      <button id="btnBFS">BFS (Amplitud)</button>
-    </div>
+  <main>
+    <section>
+      <h1>Árbol Binario</h1>
+      <div id="app-container">
+        <!-- Sección de controles -->
+        <div id="controls">
+          <input type="text" id="inputValue" placeholder="Ingresa un valor" />
+          <button id="btnInsertar">Insertar</button>
+          <button id="btnBuscar">Buscar</button>
+          <button id="btnBorrar">Borrar</button>
+          <button id="btnInOrder">In-Order</button>
+          <button id="btnPreOrder">Pre-Order</button>
+          <button id="btnPostOrder">Post-Order</button>
+          <button id="btnGrado">Calcular Grado</button>
+          <button id="btnAltura">Calcular Altura</button>
+          <button id="btnNivelNodo">Calcular Nivel Nodo</button>
+          <button id="btnBFS">BFS (Amplitud)</button>
+        </div>
 
-    <!-- Sección de visualización -->
-    <div id="canvasContainer">
-      <canvas id="treeCanvas" width="800" height="600"></canvas>
-    </div>
+        <!-- Sección de visualización -->
+        <div id="canvasContainer">
+          <canvas id="treeCanvas" width="800" height="600"></canvas>
+        </div>
 
-    <!-- Sección de resultados -->
-    <div id="output">
-      <p id="resultText"></p>
-    </div>
-  </div>
+        <!-- Sección de resultados -->
+        <div id="output">
+          <p id="resultText"></p>
+        </div>
+      </div>
+    </section>
+    <section>
+      <h2>Arbol huffman</h2>
+    </section>
+  </main>
+
 
   <!-- Archivos JavaScript (MVC) -->
   <script src="model.js"></script>
   <script src="view.js"></script>
   <script src="controller.js"></script>
 </body>
+
 </html>
